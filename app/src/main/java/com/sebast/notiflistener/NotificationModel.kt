@@ -10,7 +10,7 @@ data class NotificationModel(
     val packageName: String,
     val title: String?,
     val text: String?,
-    val data: List<Pair<String, Any?>>
+    val data: String?
 ) {
     companion object {
         private const val TITLE_KEY = "android.title"
@@ -21,25 +21,29 @@ data class NotificationModel(
             val title = extras.getString(TITLE_KEY)
             val text = extras.getString(TEXT_KEY)
             val data = extras.keySet().map {
-                Pair(it, extras[it])
-            }.toList()
+                val json = JSONObject()
+                json.put(it, extras[it])
+            }.let { JSONArray(it).toString() }
             return NotificationModel(action, packageName, title, text, data)
+        }
+
+        fun fromNotificationEntity(entity: NotificationEntity): NotificationModel {
+            return NotificationModel(
+                entity.action,
+                entity.packageName,
+                entity.title,
+                entity.text,
+                entity.extra
+            )
         }
     }
 
     fun toNotificationEntity(): NotificationEntity {
-        val extra = data.map {
-            val json = JSONObject()
-            json.put("key", it.first)
-            json.put("value", it.second)
-        }.let {
-            JSONArray(it)
-        }
         return NotificationEntity(
             packageName,
             title,
             text,
-            extra.toString(),
+            data,
             action
         )
     }

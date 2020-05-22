@@ -28,6 +28,11 @@ class MainApplication : Application() {
             val application = asMainApplication(context)
             application.publish(content)
         }
+
+        fun getDb(context: Context): AppDatabase {
+            val application = asMainApplication(context)
+            return application.db
+        }
     }
 
     private val bus by lazy { PublishSubject.create<NotificationModel>() }

@@ -4,4 +4,5 @@
     <string name="open_permission">Open Permission</string>
     <string name="permission_text">Permission Not Allowed, Please let us to look at your notifications</string>
     <string name="refresh">Refresh</string>
+    <string name="clear_all">Clear All</string>
 </resources>

@@ -1,13 +1,15 @@
 package com.sebast.notiflistener.view
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.sebast.notiflistener.NotificationModel
 import com.sebast.notiflistener.R
 
-class MainAdapter(private val notifications: List<NotificationModel>) :
+class MainAdapter() :
     RecyclerView.Adapter<MainViewHolder>() {
+    var notifications: List<NotificationModel>? = null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainViewHolder {
         val view = LayoutInflater
             .from(parent.context)
@@ -16,10 +18,10 @@ class MainAdapter(private val notifications: List<NotificationModel>) :
     }
 
     override fun getItemCount(): Int {
-        return notifications.size
+        return notifications?.size ?: 0
     }
 
     override fun onBindViewHolder(holder: MainViewHolder, position: Int) {
-        holder.bind(notifications[position])
+        notifications?.get(position)?.let { holder.bind(it) }
     }
 }

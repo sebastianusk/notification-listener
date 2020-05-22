@@ -11,4 +11,7 @@ interface NotificationDao {
 
     @Insert
     fun insertAll(vararg notificationEntities: NotificationEntity)
+
+    @Query("DELETE FROM notifications")
+    fun clearNotification()
 }
