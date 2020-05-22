@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Notif Listener</string>
+    <string name="service_name">notif-listener</string>
+    <string name="open_permission">Open Permission</string>
+    <string name="permission_text">Permission Not Allowed, Please let us to look at your notifications</string>
+    <string name="refresh">Refresh</string>
 </resources>
