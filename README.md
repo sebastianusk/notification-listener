@@ -1,2 +1,2 @@
 # ANDROID NOTIFICATION LISTENER
-A very simple app to record all the notification that are appeared on the operating system.
+A very simple app to record all the notification that are appeared on the operating system. Build with simple csv exporter to make easier management of the notification collections.
