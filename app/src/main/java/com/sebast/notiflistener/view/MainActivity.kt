@@ -10,6 +10,7 @@ import com.sebast.notiflistener.MainApplication
 import com.sebast.notiflistener.service.MyNotificationListenerService
 import com.sebast.notiflistener.model.NotificationModel
 import com.sebast.notiflistener.R
+import com.sebast.notiflistener.file.FileManager
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.schedulers.Schedulers
@@ -78,11 +79,9 @@ class MainActivity : AppCompatActivity() {
             }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe {
-                adapter.notifications = it
-                adapter.notifyDataSetChanged()
-            }
+            .subscribe { showData(it) }
     }
+
 
     private fun fetchData() {
         val db = MainApplication.getDb(this)
@@ -93,10 +92,17 @@ class MainActivity : AppCompatActivity() {
             }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe {
-                adapter.notifications = it
-                adapter.notifyDataSetChanged()
-            }
+            .subscribe { showData(it) }
+    }
 
+    private fun showData(data: List<NotificationModel>) {
+        adapter.notifications = data
+        adapter.notifyDataSetChanged()
+        share_button.isActivated = true
+        share_button.setOnClickListener { shareData(data) }
+    }
+
+    private fun shareData(list: List<NotificationModel>) {
+        FileManager.shareNotifications(this, list)
     }
 }

@@ -11,11 +11,18 @@ import com.sebast.notiflistener.model.NotificationModel
 import java.io.File
 
 object FileManager {
+    private const val TAG = "FileGenerator"
 
     fun shareNotifications(context: Context, list: List<NotificationModel>) {
         val filename = "notifications.csv"
-        File.createTempFile(filename, null, context.externalCacheDir)
         val file = File(context.externalCacheDir, filename)
+        if (file.isFile) {
+            Log.d(TAG, "file exists")
+            file.delete()
+        }
+
+        File.createTempFile(filename, null, context.externalCacheDir)
+
         NotificationModel.createCSV(file, list)
         val uri = try {
             FileProvider.getUriForFile(
@@ -25,21 +32,24 @@ object FileManager {
             )
         } catch (e: IllegalArgumentException) {
             Log.e(
-                "FileGenerator",
+                TAG,
                 "The selected file can't be shared: $file"
             )
             null
         }
-        val shareIntent: Intent = Intent().apply {
-            action = Intent.ACTION_SEND
-            putExtra(Intent.EXTRA_STREAM, uri)
-            type = "text/csv"
+        uri?.let {
+            val shareIntent: Intent = Intent().apply {
+                action = Intent.ACTION_SEND
+                putExtra(Intent.EXTRA_STREAM, it)
+                type = "text/csv"
+            }
+            startActivity(
+                context,
+                Intent.createChooser(shareIntent, context.getText(R.string.send_to)),
+                null
+            )
         }
-        startActivity(
-            context,
-            Intent.createChooser(shareIntent, context.getText(R.string.send_to)),
-            null
-        )
+
     }
 
 }

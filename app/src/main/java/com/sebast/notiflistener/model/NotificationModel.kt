@@ -43,7 +43,7 @@ data class NotificationModel(
             writer.append("\n")
 
             list.forEach {
-                writer.append("${it.action},${it.packageName},${it.title},${it.text},${it.data}\n")
+                writer.append("\"${it.action}\",\"${it.packageName}\",\"${it.title}\",\"${it.text}\",\"${it.data}\"\n")
             }
 
             writer.flush()
