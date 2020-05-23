@@ -6,4 +6,5 @@
     <string name="refresh">Refresh</string>
     <string name="clear_all">Clear All</string>
     <string name="send_to">Send CSV</string>
+    <string name="share_button">Share List</string>
 </resources>

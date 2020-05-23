@@ -18,7 +18,8 @@ class MyNotificationListenerService : NotificationListenerService() {
         private const val ENABLED_NOTIFICATION_LISTENERS = "enabled_notification_listeners"
         fun checkIfNotificationServiceEnabled(context: Context): Boolean {
             val flat =
-                Settings.Secure.getString(context.contentResolver,
+                Settings.Secure.getString(
+                    context.contentResolver,
                     ENABLED_NOTIFICATION_LISTENERS
                 )
             val packageName = context.packageName

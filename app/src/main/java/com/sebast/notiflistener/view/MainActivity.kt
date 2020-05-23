@@ -45,6 +45,8 @@ class MainActivity : AppCompatActivity() {
         if (permissionEnabled) {
             main_list.visibility = View.VISIBLE
             refresh_button.visibility = View.VISIBLE
+            share_button.visibility = View.VISIBLE
+            clear_button.visibility = View.VISIBLE
             permission_button.visibility = View.GONE
             permission_text.visibility = View.GONE
             fetchData()
@@ -53,6 +55,8 @@ class MainActivity : AppCompatActivity() {
         } else {
             main_list.visibility = View.GONE
             refresh_button.visibility = View.GONE
+            share_button.visibility = View.GONE
+            clear_button.visibility = View.GONE
             permission_text.visibility = View.VISIBLE
             permission_button.visibility = View.VISIBLE
             permission_button.setOnClickListener {
