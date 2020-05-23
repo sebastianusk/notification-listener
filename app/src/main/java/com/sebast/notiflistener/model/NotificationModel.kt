@@ -4,6 +4,8 @@ import android.service.notification.StatusBarNotification
 import com.sebast.notiflistener.storage.NotificationEntity
 import org.json.JSONArray
 import org.json.JSONObject
+import java.io.File
+import java.io.FileWriter
 
 data class NotificationModel(
     val action: String,
@@ -31,6 +33,21 @@ data class NotificationModel(
                 text,
                 data
             )
+        }
+
+        fun createCSV(file: File, list: List<NotificationModel>) {
+            val writer = FileWriter(file)
+
+            val headers = listOf("Action", "Package Name", "Title", "Text", "Data")
+            writer.append(headers.joinToString(","))
+            writer.append("\n")
+
+            list.forEach {
+                writer.append("${it.action},${it.packageName},${it.title},${it.text},${it.data}\n")
+            }
+
+            writer.flush()
+            writer.close()
         }
 
         fun fromNotificationEntity(entity: NotificationEntity): NotificationModel {
