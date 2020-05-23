@@ -1,4 +1,4 @@
-package com.sebast.notiflistener
+package com.sebast.notiflistener.model
 
 import android.service.notification.StatusBarNotification
 import com.sebast.notiflistener.storage.NotificationEntity
@@ -24,7 +24,13 @@ data class NotificationModel(
                 val json = JSONObject()
                 json.put(it, extras[it])
             }.let { JSONArray(it).toString() }
-            return NotificationModel(action, packageName, title, text, data)
+            return NotificationModel(
+                action,
+                packageName,
+                title,
+                text,
+                data
+            )
         }
 
         fun fromNotificationEntity(entity: NotificationEntity): NotificationModel {

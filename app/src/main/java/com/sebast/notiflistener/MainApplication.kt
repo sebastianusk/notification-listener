@@ -2,12 +2,9 @@ package com.sebast.notiflistener
 
 import android.app.Application
 import android.content.Context
-import android.util.Log
 import androidx.room.Room
-import androidx.room.RoomDatabase
+import com.sebast.notiflistener.model.NotificationModel
 import com.sebast.notiflistener.storage.AppDatabase
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import io.reactivex.rxjava3.subjects.PublishSubject
 import java.lang.Exception

@@ -1,4 +1,4 @@
-package com.sebast.notiflistener
+package com.sebast.notiflistener.service
 
 import android.annotation.SuppressLint
 import android.content.ComponentName
@@ -7,7 +7,8 @@ import android.provider.Settings
 import android.service.notification.NotificationListenerService
 import android.service.notification.StatusBarNotification
 import android.text.TextUtils
-import android.util.Log
+import com.sebast.notiflistener.MainApplication
+import com.sebast.notiflistener.model.NotificationModel
 
 @SuppressLint("OverrideAbstract")
 class MyNotificationListenerService : NotificationListenerService() {
@@ -17,7 +18,9 @@ class MyNotificationListenerService : NotificationListenerService() {
         private const val ENABLED_NOTIFICATION_LISTENERS = "enabled_notification_listeners"
         fun checkIfNotificationServiceEnabled(context: Context): Boolean {
             val flat =
-                Settings.Secure.getString(context.contentResolver, ENABLED_NOTIFICATION_LISTENERS)
+                Settings.Secure.getString(context.contentResolver,
+                    ENABLED_NOTIFICATION_LISTENERS
+                )
             val packageName = context.packageName
             if (!TextUtils.isEmpty(flat)) {
                 val names = flat.split(":");
@@ -38,7 +41,10 @@ class MyNotificationListenerService : NotificationListenerService() {
         super.onNotificationPosted(sbn)
         if (sbn != null) {
             val model = NotificationModel.create(sbn, "post")
-            MainApplication.publish(this, model)
+            MainApplication.publish(
+                this,
+                model
+            )
         }
 
     }
@@ -47,7 +53,10 @@ class MyNotificationListenerService : NotificationListenerService() {
         super.onNotificationRemoved(sbn)
         if (sbn != null) {
             val model = NotificationModel.create(sbn, "remove")
-            MainApplication.publish(this, model)
+            MainApplication.publish(
+                this,
+                model
+            )
         }
     }
 }

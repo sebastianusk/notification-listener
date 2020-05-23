@@ -3,13 +3,12 @@ package com.sebast.notiflistener.view
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sebast.notiflistener.MainApplication
-import com.sebast.notiflistener.MyNotificationListenerService
-import com.sebast.notiflistener.NotificationModel
+import com.sebast.notiflistener.service.MyNotificationListenerService
+import com.sebast.notiflistener.model.NotificationModel
 import com.sebast.notiflistener.R
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable

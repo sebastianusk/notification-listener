@@ -1,10 +1,9 @@
 package com.sebast.notiflistener.view
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.sebast.notiflistener.NotificationModel
+import com.sebast.notiflistener.model.NotificationModel
 import com.sebast.notiflistener.R
 
 class MainAdapter() :

@@ -3,7 +3,7 @@ package com.sebast.notiflistener.view
 import android.view.View
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.sebast.notiflistener.NotificationModel
+import com.sebast.notiflistener.model.NotificationModel
 import com.sebast.notiflistener.R
 
 class MainViewHolder(view: View) : RecyclerView.ViewHolder(view) {
